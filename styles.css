@@ -185,7 +185,7 @@ body {
 .hero-image {
     
     width: 100%;
-    left: 50%;
+    left: 10%;
     top: 50%;
     transform: translateY(-50%);
     height: auto;
