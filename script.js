@@ -427,67 +427,8 @@ function initializeButtons() {
 }
 
 function initializeContactForm() {
-    const contactForm = document.querySelector('#contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            
-    const formData = new FormData(this);
-    const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        service: formData.get('service'),
-        message: formData.get('message'),
-
-    };
-
-    // Frontend Validation
-    if (!data.name || !data.email || !data.service || !data.message) {
-        showNotification('Please fill in all required fields.', 'error');
-        return;
-    }
-
-    if (!validateEmail(data.email)) {
-        showNotification('Please enter a valid email address.', 'error');
-        return;
-    }
-
-    try {
-        const response = await fetch('http://localhost:5000/send-email', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-            showNotification(result.success, 'success');
-            this.reset();
-        } else {
-            showNotification(result.error, 'error');
-        }
-    } catch (error) {
-        console.error(error);
-        showNotification('Failed to send message. Please try again later.', 'error');
-    }
-    // // Clear uploaded files
-    // uploadedFiles = [];
-    // const fileList = document.getElementById('fileList');
-    // if (fileList) {
-    //     fileList.innerHTML = '';
-    // }
- });
-
- // Helper function to validate email
-function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-}
-            
-
+    
+        
             
 }
 
