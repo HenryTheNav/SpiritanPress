@@ -503,6 +503,10 @@ body {
     padding: 40px;
     background: #f9f9f9;
   }
+  .h2p {
+    color: var(--color-heading);
+
+  }
 
   .carousel {
     overflow: hidden;
@@ -518,13 +522,13 @@ body {
 
   .logos img {
     height: 200px;
-    margin: 0 40px;
+    margin: 0 20px;
     vertical-align: middle;
   }
 
   @keyframes scroll {
     from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    to { transform: translateX(-100%); }
   }
 
 
