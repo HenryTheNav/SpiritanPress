@@ -446,7 +446,7 @@ body {
 
 /* Portfolio Section */
 .portfolio {
-    padding: 100px 0;
+    padding: 0 0;
     background: var(--color-bg-alt);
 }
 
@@ -454,7 +454,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 0;
 }
 
 .portfolio-item {
@@ -466,7 +466,7 @@ body {
 }
 
 .portfolio-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-15px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
@@ -492,8 +492,40 @@ body {
 
 .portfolio-item p {
     padding: 0 1.5rem 1.5rem;
-    color: var(--color-text-muted);
+    color: var(--color-heading);
 }
+
+/* Partners Section */
+
+
+  .partners {
+    text-align: center;
+    padding: 40px;
+    background: #f9f9f9;
+  }
+
+  .carousel {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .logos {
+    display: inline-block;
+    animation: scroll 15s linear infinite;
+  }
+
+  .logos img {
+    height: 200px;
+    margin: 0 40px;
+    vertical-align: middle;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
 
 /* Contact Section */
 .contact {

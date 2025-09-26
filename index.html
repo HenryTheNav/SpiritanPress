@@ -18,20 +18,22 @@
             <div class="nav-logo">
                 <img src="images/banner.jpg" alt="About Spiritan Press" width="5%" height="5%" >    
 
-                <h4>Spiritan Press Enterprise</Pre><h4>
+                <h4>Spiritan Press Enterprises</Pre><h4>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
                     <a href="#home" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#portfolio" class="nav-link">Portfolio</a>
+
                 </li>
                 <li class="nav-item">
                     <a href="#about" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="#services" class="nav-link">Services</a>
+
                 </li>
                 <!-- <li class="nav-item">
                     <a href="#upload" class="nav-link">Upload Files</a>
@@ -57,7 +59,7 @@
             <h1 class="hero-title">Spreading the Gospel through the Media</h1>
             <p class="hero-subtitle">From business cards to large format prints, we deliver exceptional quality and fast turnaround times</p>
             <div class="hero-buttons">
-                <a href="#services" class="btn btn-primary">Our Services</a>
+                <a href="#contact" class="btn btn-primary">Contact US</a>
                 <!-- <a href="#upload" class="btn btn-secondary">Upload Files</a> -->
             </div>
         </div>
@@ -68,7 +70,189 @@
         </div>
     </section>
 
+         <!-- Portfolio Section -->
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Work</h2>
+            <p class="section-subtitle">See examples of our high-quality printing projects</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/caro8.jpg" alt="Partner 1" width="100%" height="100%">
+
+                        <!-- <i class="fas fa-id-card"></i> -->
+                    </div>
+                    <h3>Business Cards</h3>
+                    <p>Premium business card designs</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/caro6.jpg" alt="Partner 1" width="100%" height="100%">
+                        
+                        <!-- <i class="fas fa-file-alt"></i> -->
+                    </div>
+                    <h3>Branding and Marketing Materials</h3>
+                    <p>Brochures and promotional materials</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/caro5.jpg" alt="Partner 1" width="100%" height="100%">
+
+                        <!-- <i class="fas fa-file-alt"></i> -->
+                    </div>
+                    <h3>Photo Studio</h3>
+                    <p>Take photos with lots of memories</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/caro11.webp" alt="Partner 1" width="100%" height="100%">
+                    </div>
+                    <h3>Large Format</h3>
+                    <p>Banners and signage projects</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="images/caro13.jpg" alt="Partner 1" width="100%" height="100%">
+                    </div>
+                    <h3>Book Publishing</h3>
+                    <p>Professional book printing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- File Upload Section (commented out)
+    <section id="upload" class="upload-section">
+        <div class="container">
+            <h2 class="section-title">Upload Your Print Files</h2>
+            <p class="section-subtitle">Upload your design files for professional printing. We accept all major file formats.</p>
+            
+            <div class="upload-container">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="upload-text">Drag & Drop your files here</div>
+                    <div class="upload-subtext">or click to browse files</div>
+                    <input type="file" id="fileInput" class="file-input" multiple accept=".pdf,.ai,.eps,.psd,.jpg,.jpeg,.png,.tiff,.doc,.docx,.indd">
+                </div>
+                
+                <div class="file-list" id="fileList"></div>
+                
+                <div class="upload-options">
+                    <div class="option-card">
+                        <div class="option-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="option-title">PDF Files</div>
+                        <div class="option-desc">High-quality vector and raster PDFs</div>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="option-title">Design Files</div>
+                        <div class="option-desc">AI, EPS, PSD, INDD, and other design formats</div>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="option-title">Images</div>
+                        <div class="option-desc">JPG, PNG, TIFF high-resolution images</div>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-icon">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <div class="option-title">Documents</div>
+                        <div class="option-desc">Word documents and text files</div>
+                    </div>
+                </div>
+                
+                <div class="upload-instructions">
+                    <h3><i class="fas fa-info-circle"></i> File Upload Guidelines</h3>
+                    <ul>
+                        <li><strong>File Size:</strong> Maximum 50MB per file</li>
+                        <li><strong>Resolution:</strong> 300 DPI minimum for print quality</li>
+                        <li><strong>Color Mode:</strong> CMYK for best print results</li>
+                        <li><strong>Bleed:</strong> Add 0.125" bleed for full-bleed designs</li>
+                        <li><strong>Fonts:</strong> Outline fonts or include font files</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Spiritan Press</h2>
+
+Spiritan Press Enterprises, owned and managed by the Holy Ghost Fathers and Brothers, Province of Nigeria South East, offers a wide range of printing and brading services. We are committed to delivering excellence and serving our community with integrity.
+<br/>
+<br/>
+
+With years of experience in the printing industry, Spiritan Press has been delivering exceptional printing services to businesses of all sizes. We combine traditional craftsmanship with cutting-edge technology to produce outstanding results.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <h4>Quality Guarantee</h4>
+                                <p>100% satisfaction guarantee on all our printing services</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Fast Turnaround</h4>
+                                <p>Most orders completed within 24-48 hours</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tools"></i>
+                            <div>
+                                <h4>Modern Equipment</h4>
+                                <p>State-of-the-art printing technology and equipment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placehol">
+                        <img src="images/logo.jpeg" alt="About Spiritan Press" width="80%" height="80%" >    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="partners">
+        <h2>Our Partners</h2>
+        <div class="carousel">
+          <div class="logos">
+            <img src="images/caro1.jpg" alt="Partner 1">
+            <img src="images/caro2.jpg" alt="Partner 2">
+            <img src="images/caro3.jpg" alt="Partner 3">
+            <img src="images/caro4.jpg" alt="Partner 4">
+            <img src="images/caro7.webp" alt="Partner 5">
+            <img src="images/caro10.webp" alt="Partner 5">
+            <img src="images/caro12.webp" alt="Partner 5">
+          </div>
+        </div>
+      </section>
+
     <!-- Services Section -->
+      
     <section id="services" class="services">
         <div class="container">
             <h2 class="section-title">Our Services</h2>
@@ -180,166 +364,7 @@
         </div>
     </section>
 
-    <!-- File Upload Section (commented out)
-    <section id="upload" class="upload-section">
-        <div class="container">
-            <h2 class="section-title">Upload Your Print Files</h2>
-            <p class="section-subtitle">Upload your design files for professional printing. We accept all major file formats.</p>
-            
-            <div class="upload-container">
-                <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
-                    <div class="upload-text">Drag & Drop your files here</div>
-                    <div class="upload-subtext">or click to browse files</div>
-                    <input type="file" id="fileInput" class="file-input" multiple accept=".pdf,.ai,.eps,.psd,.jpg,.jpeg,.png,.tiff,.doc,.docx,.indd">
-                </div>
-                
-                <div class="file-list" id="fileList"></div>
-                
-                <div class="upload-options">
-                    <div class="option-card">
-                        <div class="option-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="option-title">PDF Files</div>
-                        <div class="option-desc">High-quality vector and raster PDFs</div>
-                    </div>
-                    
-                    <div class="option-card">
-                        <div class="option-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <div class="option-title">Design Files</div>
-                        <div class="option-desc">AI, EPS, PSD, INDD, and other design formats</div>
-                    </div>
-                    
-                    <div class="option-card">
-                        <div class="option-icon">
-                            <i class="fas fa-image"></i>
-                        </div>
-                        <div class="option-title">Images</div>
-                        <div class="option-desc">JPG, PNG, TIFF high-resolution images</div>
-                    </div>
-                    
-                    <div class="option-card">
-                        <div class="option-icon">
-                            <i class="fas fa-file-word"></i>
-                        </div>
-                        <div class="option-title">Documents</div>
-                        <div class="option-desc">Word documents and text files</div>
-                    </div>
-                </div>
-                
-                <div class="upload-instructions">
-                    <h3><i class="fas fa-info-circle"></i> File Upload Guidelines</h3>
-                    <ul>
-                        <li><strong>File Size:</strong> Maximum 50MB per file</li>
-                        <li><strong>Resolution:</strong> 300 DPI minimum for print quality</li>
-                        <li><strong>Color Mode:</strong> CMYK for best print results</li>
-                        <li><strong>Bleed:</strong> Add 0.125" bleed for full-bleed designs</li>
-                        <li><strong>Fonts:</strong> Outline fonts or include font files</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    -->
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Spiritan Press</h2>
-                    About Spiritan Press
-
-Spiritan Press Enterprises, owned and managed by the Holy Ghost Fathers and Brothers, Province of Nigeria South East, offers a wide range of printing and brading services. We are committed to delivering excellence and serving our community with integrity.
-<br/>
-<br/>
-
-With years of experience in the printing industry, Spiritan Press has been delivering exceptional printing services to businesses of all sizes. We combine traditional craftsmanship with cutting-edge technology to produce outstanding results.</p>
-                    
-                    <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-award"></i>
-                            <div>
-                                <h4>Quality Guarantee</h4>
-                                <p>100% satisfaction guarantee on all our printing services</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <h4>Fast Turnaround</h4>
-                                <p>Most orders completed within 24-48 hours</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-tools"></i>
-                            <div>
-                                <h4>Modern Equipment</h4>
-                                <p>State-of-the-art printing technology and equipment</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-placehol">
-                        <img src="images/logo.jpeg" alt="About Spiritan Press" width="80%" height="80%" >    
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <h2 class="section-title">Our Work</h2>
-            <p class="section-subtitle">See examples of our high-quality printing projects</p>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <i class="fas fa-id-card"></i>
-                    </div>
-                    <h3>Business Cards</h3>
-                    <p>Premium business card designs</p>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>Branding and Marketing Materials</h3>
-                    <p>Brochures and promotional materials</p>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>Photo Studio</h3>
-                    <p>Take photos with lots of memories</p>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <i class="fas fa-newspaper"></i>
-                    </div>
-                    <h3>Large Format</h3>
-                    <p>Banners and signage projects</p>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Book Publishing</h3>
-                    <p>Professional book printing</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
