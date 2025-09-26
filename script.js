@@ -429,122 +429,82 @@ function initializeButtons() {
 function initializeContactForm() {
     const contactForm = document.querySelector('#contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const service = formData.get('service');
-            const message = formData.get('message');
-            const hasFiles = formData.get('hasFiles');
             
-            // Simple validation
-            if (!name || !email || !service || !message) {
-                showNotification('Please fill in all required fields.', 'error');
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                return;
-            }
-            
-            // Check if user mentioned files but hasn't uploaded any
-            if (hasFiles && uploadedFiles.length === 0) {
-                showNotification('You mentioned having files to upload. Please upload them using the Upload Files section.', 'warning');
-                return;
-            }
-            
-            // Simulate form submission
-            const messageText = hasFiles && uploadedFiles.length > 0 
-                ? `Thank you for your message! We've received your inquiry and ${uploadedFiles.length} file(s). We'll get back to you soon.`
-                : 'Thank you for your message! We\'ll get back to you soon.';
-                
-            showNotification(messageText, 'success');
-            this.reset();
-            
-            // Clear uploaded files
-            uploadedFiles = [];
-            const fileList = document.getElementById('fileList');
-            if (fileList) {
-                fileList.innerHTML = '';
-            }
-        });
-    }
-}
+    const formData = new FormData(this);
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        service: formData.get('service'),
+        message: formData.get('message'),
 
-// Email validation function
-function isValidEmail(email) {
+    };
+
+    // Frontend Validation
+    if (!data.name || !data.email || !data.service || !data.message) {
+        showNotification('Please fill in all required fields.', 'error');
+        return;
+    }
+
+    if (!validateEmail(data.email)) {
+        showNotification('Please enter a valid email address.', 'error');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:5000/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            showNotification(result.success, 'success');
+            this.reset();
+        } else {
+            showNotification(result.error, 'error');
+        }
+    } catch (error) {
+        console.error(error);
+        showNotification('Failed to send message. Please try again later.', 'error');
+    }
+    // // Clear uploaded files
+    // uploadedFiles = [];
+    // const fileList = document.getElementById('fileList');
+    // if (fileList) {
+    //     fileList.innerHTML = '';
+    // }
+ });
+
+ // Helper function to validate email
+function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+}
+            
+
+            
+}
+
 
 // Notification system
-function showNotification(message, type = 'info') {
-    // Remove existing notifications
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-    
-    // Create notification element
+function showNotification(message, type) {
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
-    `;
-    
-    // Add styles
-    const colors = {
-        success: '#27ae60',
-        error: '#e74c3c',
-        warning: '#f39c12',
-        info: '#3498db'
-    };
-    
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${
-            type === 'success' ? getCssVar('--color-success') :
-            type === 'error' ? getCssVar('--color-primary') :
-            type === 'warning' ? getCssVar('--color-warning') :
-            getCssVar('--color-accent-end')
-        };
-        
-        color: white;
-        padding: 15px 20px;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        z-index: 10000;
-        max-width: 400px;
-        animation: slideInRight 0.3s ease-out;
-    `;
-    
-    // Add to document
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+
+    // Add the notification to the DOM
     document.body.appendChild(notification);
-    
-    // Close button functionality
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.style.animation = 'slideOutRight 0.3s ease-in';
-        setTimeout(() => notification.remove(), 300);
-    });
-    
-    // Auto remove after 5 seconds
+
+    // Remove the notification after 3 seconds
     setTimeout(() => {
-        if (notification.parentNode) {
-            notification.style.animation = 'slideOutRight 0.3s ease-in';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 5000);
+        notification.remove();
+    }, 3000);
 }
 
 // Add typing effect to hero title
