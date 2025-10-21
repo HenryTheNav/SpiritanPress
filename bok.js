@@ -1,12 +1,9 @@
-// Supabase Blog Admin JavaScript
-let supabase = null;
-let supabaseClient = null;
-let currentEditingPost = null;
-let isConnected = false;
 
-// 🔒 Hardcoded Supabase credentials
-const SUPABASE_URL = "https://cgdokqdqpwmbyybpuexv.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNnZG9rcWRxcHdtYnl5YnB1ZXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3NDQyODMsImV4cCI6MjA3NjMyMDI4M30.F-xqL511-WIWsLmYUuOVgFtVZPgJyXwxWymrlIdfI1I";
+// Supabase Blog Admin JavaScript
+ let supabase = null;
+ let supabaseClient = null;
+ let currentEditingPost = null;
+ let isConnected = false;
 
 // Wait for Supabase to load
 function waitForSupabase() {
@@ -30,6 +27,10 @@ function waitForSupabase() {
     });
 }
 
+
+
+
+
 // Initialize admin interface
 document.addEventListener('DOMContentLoaded', async function() {
     console.log('Supabase Blog Admin loaded, initializing...');
@@ -37,16 +38,26 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Set today's date as default
     document.getElementById('postDate').value = new Date().toISOString().split('T')[0];
     
+    // Load saved configuration
+    // loadConfig();
+    
+    // Initialize admin features
     initializeAdminNavigation();
     initializePostForm();
     initializeImageUpload();
     initializeTagsInput();
     initializeMediaUpload();
     
+    // Wait for Supabase to load, then try to connect if config exists
     try {
         await waitForSupabase();
         console.log('Supabase library loaded successfully');
-        initializeSupabase();
+        
+        if (getConfig().url && getConfig().key) {
+            initializeSupabase();
+        } else {
+            updateConnectionStatus(false, 'Configuration required');
+        }
     } catch (error) {
         console.error('Failed to load Supabase library:', error);
         updateConnectionStatus(false, 'Supabase library failed to load');
@@ -54,78 +65,159 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 });
 
-// 🧱 Simplified configuration (no input form)
-function getConfig() {
-    return { url: SUPABASE_URL, key: SUPABASE_ANON_KEY };
-}
+// Configuration Management
+// function getConfig() {
+//     const config = localStorage.getItem('supabaseConfig');
+//     return config ? JSON.parse(config) : { url: '', key: '' };
+// }
 
-function saveConfig() {
-    // Not needed anymore — kept to avoid breaking existing references
-    console.log("Configuration is hardcoded. saveConfig() skipped.");
-}
+// function saveConfig() {
+//     const url = document.getElementById('supabaseUrl').value.trim();
+//     const key = document.getElementById('supabaseKey').value.trim();
+    
+//     if (!url || !key) {
+//         showNotification('Please enter both URL and API key', 'error');
+//         return;
+//     }
+    
+//     const config = { url, key };
+//     localStorage.setItem('supabaseConfig', JSON.stringify(config));
+    
+//     showNotification('Configuration saved successfully!', 'success');
+    
+//     // Initialize Supabase with new config
+//     initializeSupabase();
+// }
 
-function loadConfig() {
-    // No UI elements to populate anymore
-    console.log("Configuration is hardcoded. loadConfig() skipped.");
-}
+// function loadConfig() {
+//     const config = getConfig();
+//     if (config.url) {
+//         document.getElementById('supabaseUrl').value = config.url;
+//     }
+//     if (config.key) {
+//         document.getElementById('supabaseKey').value = config.key;
+//     }
+// }
 
 async function testConnection() {
+    const url = document.getElementById('supabaseUrl').value.trim();
+    const key = document.getElementById('supabaseKey').value.trim();
+    
+    if (!url || !key) {
+        showNotification('Please enter both URL and API key', 'error');
+        return;
+    }
+    
     try {
+        // Ensure Supabase is loaded
         if (!window.supabase || !window.supabase.createClient) {
             await waitForSupabase();
         }
         
-        const testClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Create temporary client for testing
+        const testClient = window.supabase.createClient(url, key);
         
         showNotification('Testing connection...', 'info');
         
+        // Test connection by trying to fetch from a table
         const response = await testClient.from('blog_posts').select('count').limit(1);
         
         if (response.error) {
             showNotification(`Connection failed: ${response.error.message}`, 'error');
         } else {
             showNotification('Connection successful!', 'success');
+            saveConfig();
         }
     } catch (error) {
         showNotification(`Connection failed: ${error.message}`, 'error');
     }
 }
 
-// Supabase Initialization
+// // Supabase Initialization
+// async function initializeSupabase() {
+//     const config = getConfig();
+//     if (!config.url || !config.key) {
+//         updateConnectionStatus(false, 'Configuration required');
+//         return;
+//     }
+    
+//     try {
+//         // Ensure Supabase is loaded
+//         if (!window.supabase || !window.supabase.createClient) {
+//             await waitForSupabase();
+//         }
+        
+//         supabaseClient = window.supabase.createClient(config.url, config.key);
+//         supabase = supabaseClient;
+        
+//         console.log('Supabase client created successfully');
+        
+//         // Test connection
+//         await testSupabaseConnection();
+//     } catch (error) {
+//         console.error('Failed to initialize Supabase:', error);
+//         updateConnectionStatus(false, 'Initialization failed');
+//         showNotification(`Failed to initialize Supabase client: ${error.message}`, 'error');
+//     }
+// }
+// Supabase Initialization (Cleaned + Auto)
 async function initializeSupabase() {
     try {
-        if (!window.supabase || !window.supabase.createClient) {
-            await waitForSupabase();
-        }
-        
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        supabase = supabaseClient;
-        
-        console.log('Supabase client created successfully');
-        await testSupabaseConnection();
+      // ✅ Wait for Supabase library to load (important for slow connections)
+      const supabaseLib = await waitForSupabase();
+  
+      // ✅ Pull from hardcoded config (defined in SupaBaseConfig.js)
+      const config = {
+        url: window.SUPABASE_URL || "https://cgdokqdqpwmbyybpuexv.supabase.co",
+        key: window.SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNnZG9rcWRxcHdtYnl5YnB1ZXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3NDQyODMsImV4cCI6MjA3NjMyMDI4M30.F-xqL511-WIWsLmYUuOVgFtVZPgJyXwxWymrlIdfI1I"
+      };
+  
+      // ✅ Create client
+      supabaseClient = supabaseLib.createClient(config.url, config.key);
+      supabase = supabaseClient;
+      console.log("✅ Supabase client created successfully");
+  
+      // ✅ Test connection by fetching a sample record
+      const { error } = await supabase.from("blog_posts").select("id").limit(1);
+      if (error) throw error;
+  
+      // ✅ Update UI + dashboard
+      isConnected = true;
+      console.log("✅ Connected to Supabase successfully!");
+      document.body.classList.add("connected");
+  
+      // Optional: your existing dashboard refresh
+      if (typeof loadDashboard === "function") loadDashboard();
+  
     } catch (error) {
-        console.error('Failed to initialize Supabase:', error);
-        updateConnectionStatus(false, 'Initialization failed');
-        showNotification(`Failed to initialize Supabase client: ${error.message}`, 'error');
+      console.error("❌ Failed to initialize Supabase:", error);
+      updateConnectionStatus(false, "Initialization failed");
+      showNotification(`Failed to initialize Supabase: ${error.message}`, "error");
     }
-}
+  }
+  
 
 async function testSupabaseConnection() {
     try {
         updateConnectionStatus(false, 'Testing connection...');
         
+        // Try to fetch from blog_posts table
         const { data, error } = await supabaseClient
             .from('blog_posts')
             .select('count')
             .limit(1);
         
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         
         isConnected = true;
         updateConnectionStatus(true, 'Connected');
         showNotification('Successfully connected to Supabase!', 'success');
         
+        // Load data
         loadDashboardData();
+        
     } catch (error) {
         console.error('Supabase connection test failed:', error);
         isConnected = false;
@@ -149,11 +241,6 @@ function updateConnectionStatus(connected, message) {
         text.textContent = message;
     }
 }
-
-// 👇 All other code remains exactly the same from your original version
-// (admin navigation, dashboard, posts, image upload, tags, etc.)
-// Nothing below this line was changed.
-
 
 // Admin Navigation
 function initializeAdminNavigation() {
@@ -905,7 +992,7 @@ function previewPost() {
 
 function previewPostById(postId) {
     // This would open the actual blog post in a new tab
-    window.open(`blog.html?id=${postId}`, '_blank');
+    window.open(`blog-post.html?id=${postId}`, '_blank');
 }
 
 function showPostPreview(post) {
