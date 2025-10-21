@@ -95,10 +95,10 @@ function renderFeatured(p) {
                 <span class="post-author"><i class="fas fa-user"></i> ${escapeHtml(p.author)}</span>
                 <span class="post-category-tag">${escapeHtml(p.category)}</span>
             </div>
-            <h2><a href="Blog.html?id=${encodeURIComponent(p.id)}">${escapeHtml(p.title)}</a></h2>
+            <h2><a href="blog.html?id=${encodeURIComponent(p.id)}">${escapeHtml(p.title)}</a></h2>
             <p>${escapeHtml(p.excerpt || '')}</p>
             <div class="post-footer">
-                <a href="Blog.html?id=${encodeURIComponent(p.id)}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                <a href="blog.html?id=${encodeURIComponent(p.id)}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                 <div class="post-stats">
                     <span><i class="fas fa-eye"></i> ${p.views} views</span>
                     <span><i class="fas fa-comment"></i> ${p.comments} comments</span>
@@ -121,10 +121,10 @@ function renderGrid(list) {
                     <span class="post-date"><i class="fas fa-calendar"></i> ${fmtDate(p.date)}</span>
                     <span class="post-author"><i class="fas fa-user"></i> ${escapeHtml(p.author)}</span>
                 </div>
-                <h3><a href="Blog.html?id=${encodeURIComponent(p.id)}">${escapeHtml(p.title)}</a></h3>
+                <h3><a href="blog.html?id=${encodeURIComponent(p.id)}">${escapeHtml(p.title)}</a></h3>
                 <p>${escapeHtml(p.excerpt || '')}</p>
                 <div class="post-footer">
-                    <a href="Blog.html?id=${encodeURIComponent(p.id)}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="blog.html?id=${encodeURIComponent(p.id)}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     <div class="post-stats"><span><i class="fas fa-eye"></i> ${p.views} views</span></div>
                 </div>
             </div>
@@ -140,7 +140,7 @@ function renderSidebar(all) {
             <div class="recent-post">
                 <img src="${p.featuredImage}" alt="${escapeHtml(p.title)}" width="60" height="60">
                 <div class="recent-post-content">
-                    <h4><a href="Blog.html?id=${encodeURIComponent(p.id)}">${escapeHtml(p.title)}</a></h4>
+                    <h4><a href="blog.html?id=${encodeURIComponent(p.id)}">${escapeHtml(p.title)}</a></h4>
                     <span class="recent-post-date">${fmtDate(p.date)}</span>
                 </div>
             </div>`).join('');
@@ -186,7 +186,7 @@ function renderDetail(id) {
     }
     document.getElementById('breadcrumb').innerHTML = `
         <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i> 
-        <a href="Blog.html">Blog</a> <i class="fas fa-chevron-right"></i> 
+        <a href="blog.html">Blog</a> <i class="fas fa-chevron-right"></i> 
         <span>${escapeHtml(post.title)}</span>`;
     document.getElementById('detailImage').src = post.featuredImage;
     document.getElementById('detailImage').alt = post.title;
@@ -204,8 +204,8 @@ function renderDetail(id) {
     const prev = posts[idx-1];
     const next = posts[idx+1];
     document.getElementById('postNavigation').innerHTML = `
-        ${prev ? `<a href="Blog.html?id=${encodeURIComponent(prev.id)}" class="nav-post prev"><i class="fas fa-chevron-left"></i><div><span>Previous Post</span><h5>${escapeHtml(prev.title)}</h5></div></a>` : '<div></div>'}
-        ${next ? `<a href="Blog.html?id=${encodeURIComponent(next.id)}" class="nav-post next"><div><span>Next Post</span><h5>${escapeHtml(next.title)}</h5></div><i class="fas fa-chevron-right"></i></a>` : '<div></div>'}`;
+        ${prev ? `<a href="blog.html?id=${encodeURIComponent(prev.id)}" class="nav-post prev"><i class="fas fa-chevron-left"></i><div><span>Previous Post</span><h5>${escapeHtml(prev.title)}</h5></div></a>` : '<div></div>'}
+        ${next ? `<a href="blog.html?id=${encodeURIComponent(next.id)}" class="nav-post next"><div><span>Next Post</span><h5>${escapeHtml(next.title)}</h5></div><i class="fas fa-chevron-right"></i></a>` : '<div></div>'}`;
 
     // Related
     const related = posts.filter(p => String(p.id)!==String(post.id) && (p.category===post.category || (p.tags||[]).some(t => (post.tags||[]).includes(t)))).slice(0,3);
@@ -215,7 +215,7 @@ function renderDetail(id) {
             <div class="related-post">
                 <img src="${p.featuredImage}" alt="${escapeHtml(p.title)}" width="60" height="60">
                 <div class="related-post-content">
-                    <h4><a href="Blog.html?id=${encodeURIComponent(p.id)}">${escapeHtml(p.title)}</a></h4>
+                    <h4><a href="blog.html?id=${encodeURIComponent(p.id)}">${escapeHtml(p.title)}</a></h4>
                     <span class="related-post-date">${fmtDate(p.date)}</span>
                 </div>
             </div>`).join('');
