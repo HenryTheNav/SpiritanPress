@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiritan Press Blog</title>
+    <meta name="description" content="Insights, tips, and news from Spiritan Press.">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo2.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo2.png">
+    <link rel="apple-touch-icon" href="images/logo2.png">
+     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo2.png" alt="About Spiritan Press" width="5%" height="5%" >    
+                <h2><a href="index.html" style="text-decoration: none; color: inherit;">Spiritan Press</a></h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="Blog.html" class="nav-link active">Blog</a></li>
+                <!-- <li class="nav-item"><a href="blog-admin.html" class="nav-link">Admin</a></li> -->
+            </ul>
+            <div class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">
+                <i class="fas fa-circle-half-stroke"></i>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <h1>Spiritan Press Blog</h1>
+                <p>Insights, tips, and news from the world of professional printing</p>
+                <div class="blog-search">
+                    <input type="text" id="blogSearch" placeholder="Search blog posts...">
+                    <button type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-content" id="listView" style="display: none;">
+        <div class="container">
+            <div class="blog-layout">
+                <div class="blog-main">
+                    <article class="blog-post featured-post" id="featuredPost"></article>
+                    <div class="blog-posts-grid" id="postsGrid"></div>
+                    <div id="listEmpty" style="display:none; text-align:center; color: var(--color-text-muted); padding: 2rem;">
+                        <i class="fas fa-newspaper" style="font-size:2rem; display:block; margin-bottom: 0.5rem;"></i>
+                        No posts available yet.
+                    </div>
+                </div>
+                <aside class="blog-sidebar">
+                    <div class="sidebar-widget">
+                        <h3>Categories</h3>
+                        <ul class="category-list" id="categoryList"></ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>Recent Posts</h3>
+                        <div class="recent-posts" id="recentPosts"></div>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>Popular Tags</h3>
+                        <div class="tag-cloud" id="tagCloud"></div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-post-content" id="detailView" style="display: none;">
+        <div class="container">
+            <div class="post-layout">
+                <article class="post-main">
+                    <div class="breadcrumb" id="breadcrumb"></div>
+                    <div class="post-featured-image"><img id="detailImage" src="" alt="" width="100%" height="400"></div>
+                    <div class="post-header-content">
+                        <div class="post-category-badge" id="detailCategory"></div>
+                        <h1 id="detailTitle"></h1>
+                        <div class="post-meta" id="detailMeta"></div>
+                    </div>
+                    <p class="post-intro" id="detailExcerpt"></p>
+                    <div class="post-body" id="detailBody"></div>
+                    <div class="post-tags">
+                        <h4>Tags:</h4>
+                        <div class="tag-list" id="detailTags"></div>
+                    </div>
+                    <div class="post-navigation" id="postNavigation"></div>
+                </article>
+                <aside class="post-sidebar">
+                    <div class="sidebar-widget">
+                        <h3>Related Posts</h3>
+                        <div class="related-posts" id="relatedPosts"></div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Spiritan Press</h3>
+                    <p>Your trusted partner for all printing needs. Quality, speed, and reliability you can count on.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="Blog.html">Blog</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 4 Benjamin Street, Off Old Market Road, Behind MTN Office<br>Onitsha, Anambra State</p>
+                    <p><i class="fas fa-phone"></i> 08068527999, 08139084232</p>
+                    <p><i class="fas fa-envelope"></i> spiritanpress@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Spiritan Press. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="Blog.js"></script>
+</body>
+</html>
+
+
