@@ -3,6 +3,13 @@ let sb = null;
 let sbClient = null;
 let posts = [];
 
+async function waitForSupabase() {
+    while (!window.supabase || !window.supabase.createClient) {
+        await new Promise(res => setTimeout(res, 50));
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', async function() {
     // Determine mode: list or detail via ?id=
     const params = new URLSearchParams(window.location.search);
@@ -10,7 +17,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Initialize Supabase from saved config
     const cfg = JSON.parse(localStorage.getItem('supabaseConfig') || '{}');
-    if (cfg.url && cfg.key && window.supabase && window.supabase.createClient) {
+    if (cfg.url && cfg.key ) {
+        await waitForSupabase(); // ✅ ensure Supabase is ready (fixes mobile)
         sb = window.supabase;
         sbClient = sb.createClient(cfg.url, cfg.key);
     }
