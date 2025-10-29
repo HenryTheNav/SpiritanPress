@@ -2,6 +2,11 @@
 let sb = null;
 let sbClient = null;
 let posts = [];
+// 🔒 Hardcoded Supabase credentials
+const SUPABASE_URL = "https://cgdokqdqpwmbyybpuexv.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNnZG9rcWRxcHdtYnl5YnB1ZXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3NDQyODMsImV4cCI6MjA3NjMyMDI4M30.F-xqL511-WIWsLmYUuOVgFtVZPgJyXwxWymrlIdfI1I";
+
+
 
 async function waitForSupabase() {
     while (!window.supabase || !window.supabase.createClient) {
@@ -17,11 +22,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Initialize Supabase from saved config
     const cfg = JSON.parse(localStorage.getItem('supabaseConfig') || '{}');
-    if (cfg.url && cfg.key ) {
+    
         await waitForSupabase(); // ✅ ensure Supabase is ready (fixes mobile)
         sb = window.supabase;
-        sbClient = sb.createClient(cfg.url, cfg.key);
-    }
+        sbClient = sb.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    
 
     if (!sbClient) {
         showToast('Supabase not configured. Open NewAdminblog.html to set it up.', 'warning');
