@@ -4,9 +4,6 @@ A modern, responsive website for a professional printing press company built wit
 
 ## Features
 
-https://cgdokqdqpwmbyybpuexv.supabase.co
-
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNnZG9rcWRxcHdtYnl5YnB1ZXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3NDQyODMsImV4cCI6MjA3NjMyMDI4M30.F-xqL511-WIWsLmYUuOVgFtVZPgJyXwxWymrlIdfI1I
 ### 🎨 Modern Design
 - Clean, professional layout with gradient backgrounds
 - Responsive design that works on all devices
